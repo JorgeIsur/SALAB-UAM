@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/pictures/logogrande.png" width="70" height="40" class="d-inline-block align-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://www.ler.uam.mx/es/UAMLerma/home">Lerma</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://www.ler.uam.mx/work/models/UAMLerma/Resource/65/1/images/PlanoUAML.pdf">Mapa de unidad</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/laboratorios">Laboratorios</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+            {{#if user}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Prestamos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/administrar">Todos mis prestamos</a></li>
+                    <li><a class="dropdown-item" href="/administrar/nuevo-prestamo">Nuevo prestamo</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
+                </ul>
+            </li>
+            {{else}}
+             <li class="nav-item">
+                <a class="nav-link" href="/users/signup">Registro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/signin">Ingresa</a>
+            </li>
+            {{/if}}
+            {{#if user.admin}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Items
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <li><a class="dropdown-item" href="/items/add">Nuevo item</a></li>
+                <li><a class="dropdown-item" href="/items">Todos los items</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Laboratorios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <li><a class="dropdown-item" href="/laboratorios/add">Nuevo laboratorio</a></li>
+                <li><a class="dropdown-item" href="/laboratorios">Todos los laboratorios</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
+              </ul>
+            </li>
+            {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

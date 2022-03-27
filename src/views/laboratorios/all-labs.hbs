@@ -1,0 +1,43 @@
+<div class="row">
+    {{#each labs}}
+        <div class="col-md-3">
+             <div class="card mt-4">
+                 <div class="card-body">
+                     <h4 class="card-title d-flex justify-content-between align-items-center text-center">
+                         {{name}} <a href="/laboratorios/edit/{{_id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                     </h4>
+                     <p><b>Cupo</b></p>
+                     <p>{{cupo}}</p>
+                     <p><b>Responsable</b></p>
+                     <p>{{responsable}}</p>
+                     <p><b>División</b></p>
+                     <p>{{area}}</p>
+                     <p><b>Estado</b></p>
+                     {{#if habilitado}}
+                        <p>Habilitado</p>
+                     {{else}}
+                        <p>No habilitado</p>
+                    {{/if}}
+                     <form action="/laboratorios/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger w-100 btn-sm" type="submit">
+                            Borrar
+                        </button>
+                     </form>
+                 </div>
+             </div>
+        </div>
+    {{else}}
+        <div class="card mx-auto">
+            <div class="card-body">
+                {{#if user}}
+                <h1>Hola, {{user.name}}</h1>
+                <p class="lead mx-auto">No hay laboratorios disponibles.</p>
+                {{else}}
+                <h1>Hola.</h1>
+                <p class="lead mx-auto">No hay laboratorios disponibles.</p>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

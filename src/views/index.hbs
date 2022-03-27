@@ -1,0 +1,68 @@
+<!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/pictures/lerma_antes.jpg" alt="Lerma antes." class="d-block w-100" width="480" height="360">
+      <div class="carousel-caption">
+        <h3>
+          La UAM-Lerma a través del tiempo
+        </h3>
+        <p>La evolución de la unidad Lerma a lo largo de los años.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/pictures/lerma-ahora.jpg" alt="Chicago" class="d-block w-100" width="480" height="360">
+      <div class="carousel-caption">
+        <h3>
+          Inauguración de los edificios O y P
+        </h3>
+        <p>Descubre los nuevos edificios de la unidad Lerma.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/pictures/basys-3.jpg" alt="New York" class="d-block w-100" width="480" height="360">
+      <div class="carousel-caption">
+        <h3>
+          Descubriendo a las FPGA.
+        </h3>
+        <p>Descubre las aplicaciones de las FPGA en el entorno laboral.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<div class="card mx-auto mt-5">
+    <div class="card-header text-center">
+        <h1>SALAB</h1>
+    </div>
+    <div class="card-body">
+        <p>
+          El sistema de administración de laboratorios es una herramienta que tiene como objetivo agilizar las tareas de prestamo de equipo de laboratorio cuando sea posible.
+        </p>
+    </div>
+</div>
+{{#if user}}
+
+{{else}}
+    <div class="mt-4 text-center">
+      <a href="/users/signup" class="me-5 btn btn-primary btn-lg">Registrate</a>
+      <a href="/users/signin" class="btn btn-primary btn-lg">Ingresa</a>
+    </div>
+{{/if}}

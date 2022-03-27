@@ -1,0 +1,74 @@
+<div class="col-md-4 mx-auto">
+  <div class="card mt-4">
+    <div class="card-header">
+      <h3>Nuevo Artículo</h3>
+    </div>
+    <div class="card-body">
+      <form action="/items/nuevo-articulo" method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="Nombre"
+            autofocus
+          />
+        </div>
+        <div class="form-group mt-4">
+          <textarea
+            name="description"
+            class="form-control"
+            placeholder="Descripción"
+          ></textarea>
+        </div>
+        <div class="form-group mt-4">
+            <input type="text" name="cantidad" class="form-control" placeholder="Cantidad">
+        </div>
+        <div class="form-group mt-4">
+            <input type="text" name="numInventario" class="form-control" placeholder="Número de inventario">
+        </div>
+        <div class="form-group mt-4">
+            <h4>División</h4>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="area" id="CBI" value="CBI">
+                <label class="form-check-label" for="CBI">CBI</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="area" id="CBS" value="CBS">
+                <label class="form-check-label" for="CBS">CBS</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="area" id="CSH" value="CSH">
+                <label class="form-check-label" for="CSH">CSH</label>
+            </div>
+        </div>
+        <div class="form-group mt-4">
+            <h4>Laboratorio</h4>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="lab" id="G12" value="G12">
+                <label class="form-check-label" for="G12">G-12</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="lab" id="G13" value="G13">
+                <label class="form-check-label" for="G13">G-13</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="lab" id="G14" value="G14">
+                <label class="form-check-label" for="G14">G-14</label>
+            </div>
+        </div>
+        <div class="form-group mt-4 mb-4">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="stock" name="stock" value="true" checked>
+                <label class="form-check-label" for="Stock">Stock</label>
+            </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary w-100" type="submit">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
