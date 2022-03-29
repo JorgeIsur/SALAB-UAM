@@ -6,6 +6,7 @@ const UserSchema = new Schema({
     name:{type:String,required:true},
     email:{type:String,required:true},
     password:{type:String,required:true},
+    matricula:{type:String,required:true},
     admin:{type:Boolean, default:false},
     date:{type:Date, default:Date.now}
 });

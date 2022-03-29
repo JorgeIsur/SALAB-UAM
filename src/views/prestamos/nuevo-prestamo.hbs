@@ -1,0 +1,30 @@
+<div class="row">
+    {{#each items}}
+        <div class="col-md-3">
+             <div class="card mt-4">
+                 <div class="card-body">
+                     <h4 class="card-title d-flex justify-content-between align-items-center">
+                         {{name}}
+                     </h4>
+                     <p>{{description}}</p>
+                     <p>Cantidad:{{cantidad}}</p>
+                     <p>Número de inventario</p>
+                     <p>{{numInventario}}</p>
+                     <form action="/prestamos/nuevo-prestamo/{{_id}}" method="POST">
+                        <input type="hidden" name="_method">
+                        <button class="btn btn-success w-100 btn-sm" type="submit">
+                            Solicitar
+                        </button>
+                     </form>
+                 </div>
+             </div>
+        </div>
+    {{else}}
+        <div class="card mx-auto">
+            <div class="card-body">
+                <h1>Hola, {{user.name}}</h1>
+                <p class="lead mx-auto">No hay articulos disponibles.</p>
+            </div>
+        </div>
+    {{/each}}
+</div>

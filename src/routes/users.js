@@ -11,7 +11,7 @@ router.get('/users/signin',(req,res)=>{
 });
 
 router.post('/users/signin',passport.authenticate('local',{
-    successRedirect: '/administrar',
+    successRedirect: '/prestamos',
     failureRedirect: '/users/signin',
     failureFlash: true
 }));
@@ -21,7 +21,7 @@ router.get('/users/signup',(req,res)=>{
 });
 
 router.post('/users/signup',async (req,res)=>{
-    const {name,email,password,confirm_password,admin} = req.body;
+    const {name,email,password,matricula,confirm_password,admin} = req.body;
     const errors = [];
     if(name.length<=0){
         errors.push({text:"Nombre no puede estar vacio."})
@@ -43,7 +43,7 @@ router.post('/users/signup',async (req,res)=>{
         req.flash('error_msg','Este email ya ha sido registrado.');
         req.redirect('/users/signup');
     }
-    const newUser = new User({name,email,password,admin});
+    const newUser = new User({name,email,password,matricula,admin});
     newUser.password = await newUser.encryptPassword(password);
     await newUser.save();
     req.flash('success_msg','Se ha realizado el registro exitosamente.');
