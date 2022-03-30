@@ -27,8 +27,6 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/prestamos">Todos mis prestamos</a></li>
                     <li><a class="dropdown-item" href="/prestamos/nuevo-prestamo">Nuevo prestamo</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
                 </ul>
             </li>
             {{else}}
@@ -47,8 +45,6 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <li><a class="dropdown-item" href="/items/add">Nuevo item</a></li>
                 <li><a class="dropdown-item" href="/items">Todos los items</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -58,12 +54,13 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <li><a class="dropdown-item" href="/laboratorios/add">Nuevo laboratorio</a></li>
                 <li><a class="dropdown-item" href="/laboratorios">Todos los laboratorios</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
               </ul>
             </li>
             <li class="nav-item">
-                <button class="btn btn-outline-success" type="submit">{{user.name}}</button>
+                <button class="me-3 btn btn-outline-success" type="submit">{{user.name}}</button>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger" href="/users/logout">Cerrar sesión</a>
             </li>
             {{/if}}
       </ul>
