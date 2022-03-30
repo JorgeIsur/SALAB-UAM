@@ -6,8 +6,9 @@ const Labs = require('../models/Laboratorios');
 
 const {isAuthenticated} = require('../helpers/auth');
 
-router.get('/items/add',(req,res)=>{
-    res.render('items/nuevo-articulo');
+router.get('/items/add',isAuthenticated,async(req,res)=>{
+    const laboratorios = await Labs.find().lean();
+    res.render('items/nuevo-articulo',{laboratorios});
 });
 
 router.post('/items/nuevo-articulo',isAuthenticated,async(req,res)=>{

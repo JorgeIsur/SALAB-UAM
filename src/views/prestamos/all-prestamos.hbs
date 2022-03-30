@@ -1,5 +1,7 @@
 <div class="row">
+    {{#if user}}
     <h1>Hola, {{user.name}}</h1>
+    {{/if}}
     {{#if user.admin}}
         <h4>Permisos de administrador.</h4>
     {{/if}}
@@ -30,7 +32,6 @@
     {{else}}
         <div class="card mx-auto">
             <div class="card-body">
-                <h1>Hola, {{user.name}}</h1>
                 <p class="lead mx-auto">No tienes prestamos activos.</p>
                 <a href="/prestamos/nuevo-prestamo" class="btn btn-success btn-lg">Hacer un prestamo</a>
             </div>
