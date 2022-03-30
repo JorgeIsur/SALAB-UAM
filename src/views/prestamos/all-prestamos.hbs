@@ -1,4 +1,8 @@
 <div class="row">
+    <h1>Hola, {{user.name}}</h1>
+    {{#if user.admin}}
+        <h4>Permisos de administrador.</h4>
+    {{/if}}
     {{#each prestamos}}
         <div class="col-md-3">
              <div class="card mt-4">
@@ -12,14 +16,14 @@
                      <p>{{fecha}}</p>
                      <p><b>Entrega</b></p>
                      <p>{{entrega}}</p>
-                     {{#if user.admin}}
-                     <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger w-100 btn-sm" type="submit">
-                            Borrar
-                        </button>
-                     </form>
-                     {{/if}}
+                    {{#if ../user.admin}}
+                        <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger w-100 btn-sm" type="submit">
+                                Borrar
+                            </button>
+                        </form>
+                    {{/if}}
                  </div>
              </div>
         </div>
