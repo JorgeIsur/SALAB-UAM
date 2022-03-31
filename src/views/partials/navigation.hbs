@@ -27,6 +27,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/prestamos">Todos mis prestamos</a></li>
                     <li><a class="dropdown-item" href="/prestamos/nuevo-prestamo">Nuevo prestamo</a></li>
+                    <li><a class="dropdown-item" href="/users/logout">Cerrar sesión</a></li>
                 </ul>
             </li>
             {{else}}
@@ -55,6 +56,9 @@
                 <li><a class="dropdown-item" href="/laboratorios/add">Nuevo laboratorio</a></li>
                 <li><a class="dropdown-item" href="/laboratorios">Todos los laboratorios</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/administrar">Administrar</a>
             </li>
             <li class="nav-item ms-auto">
                 <button class="ms-3 me-3 btn btn-outline-success" type="submit">{{user.name}}</button>

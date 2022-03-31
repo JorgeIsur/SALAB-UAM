@@ -1,0 +1,51 @@
+<div class="row">
+    {{#if user}}
+    <h1>Hello, {{user.name}}</h1>
+    {{/if}}
+    {{#if user.admin}}
+        <h4>Permisos de administrador</h4>
+        {{#each prestamos}}
+            <div class="col-md-3">
+                 <div class="card mt-4">
+                     <div class="card-body">
+                         <h4 class="card-title d-flex justify-content-between align-items-center">
+                             {{name}}
+                        </h4>
+                        <p><B>Matricula</B></p>
+                        <p>{{matricula}}</p>
+                        <p><b>Prestado</b></p>
+                        <p>{{fecha}}</p>
+                        <p><b>Entrega</b></p>
+                        <p>{{entrega}}</p>
+                        <p><b>Folio</b></p>
+                        <p>{{_id}}</p>
+                        <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="mb-3 btn btn-success w-100 btn-sm" type="submit">
+                                Regresar
+                            </button>
+                        </form>
+                        <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger w-100 btn-sm" type="submit">
+                                Borrar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <p class="lead mx-auto">No hay prestamos activos.</p>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="card mx-auto">
+            <div class="card-body">
+                <p class="lead mx-auto">No tienes permitido ver este sitio.</p>
+            </div>
+        </div>
+    {{/if}}
+</div>
