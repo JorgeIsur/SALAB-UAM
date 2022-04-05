@@ -15,10 +15,16 @@
                      <p><b>No. Inventario.</b></p>
                      <p>{{articulo}}</p>
                      <p><b>Prestamo</b></p>
-                     <p>{{fecha}}</p>
+                     <p>{{f_fecha}}</p>
                      <p><b>Entrega</b></p>
-                     <p>{{entrega}}</p>
+                     <p>{{f_entrega}}</p>
                     {{#if ../user.admin}}
+                        <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="mb-3 btn btn-success w-100 btn-sm" type="submit">
+                                Regresar
+                            </button>
+                        </form>
                         <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger w-100 btn-sm" type="submit">

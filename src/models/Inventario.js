@@ -8,7 +8,13 @@ const EquipmentSchema = new Schema({
     area:{type:String,required:true},
     lab:{type:String,required:true},
     numInventario:{type:String,required:true},
-    stock:{type: Boolean, required:true}
+    stock:{type: Boolean, required:true},
+    img:{
+        data:Buffer,
+        contentType: String,
+        pic: String
+    }
 });
+
 
 module.exports = mongoose.model('Inventario',EquipmentSchema);

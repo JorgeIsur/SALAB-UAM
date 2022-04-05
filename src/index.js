@@ -5,6 +5,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const multer = require('multer');
+const bodyParser = require('body-parser');
 //inicializaciones
 const app = express();
 require('./database');
@@ -20,7 +22,8 @@ app.engine('.hbs',exphbs.engine({
 }));
 app.set('view engine','.hbs');
 //middlewares
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(session({
     secret: 'mysecretapp',

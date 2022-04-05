@@ -4,13 +4,15 @@
       <h3>Nuevo Artículo</h3>
     </div>
     <div class="card-body">
-      <form action="/items/nuevo-articulo" method="POST">
+      <form action="/items/nuevo-articulo" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <input
             type="text"
             name="name"
             class="form-control"
             placeholder="Nombre"
+            id="name"
+            value=""
             autofocus
           />
         </div>
@@ -51,28 +53,15 @@
           </div>
           {{/each}}
         </div>
-        <!-- >
-        <div class="form-group mt-4">
-            <h4>Laboratorio</h4>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lab" id="G12" value="G12">
-                <label class="form-check-label" for="G12">G-12</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lab" id="G13" value="G13">
-                <label class="form-check-label" for="G13">G-13</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lab" id="G14" value="G14">
-                <label class="form-check-label" for="G14">G-14</label>
-            </div>
-        </div>
-        <!--->
         <div class="form-group mt-4 mb-4">
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="stock" name="stock" value="true" checked>
                 <label class="form-check-label" for="Stock">Stock</label>
             </div>
+        </div>
+        <div class="mb-4">
+          <label for="image">Subir foto</label>
+          <input type="file" id="image" name="image" value="">
         </div>
         <div class="form-group">
           <button class="btn btn-primary w-100" type="submit">
