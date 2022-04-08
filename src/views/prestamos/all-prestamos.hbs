@@ -18,6 +18,8 @@
                      <p>{{f_fecha}}</p>
                      <p><b>Entrega</b></p>
                      <p>{{f_entrega}}</p>
+                     <p><b>Restante</b></p>
+                     <p>{{../diferencia.restante}} días</p>
                     {{#if ../user.admin}}
                         <form action="/prestamos/delete/{{_id}}?_method=DELETE" method="POST">
                             <input type="hidden" name="_method" value="DELETE">

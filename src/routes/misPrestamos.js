@@ -26,7 +26,7 @@ router.post('/prestamos/nuevo-prestamo/:id',isAuthenticated,async(req,res)=>{
     const cantidad = '1';
     const nuevoPrestamo = new Prestamos({name,matricula,articulo,laboratorio,cantidad});
     nuevoPrestamo.actualizar = await nuevoPrestamo.actualizaInventario(name);
-    nuevoPrestamo.user = req.user.id;
+    nuevoPrestamo.user = req.user._id;
     await nuevoPrestamo.save();
     req.flash('success_msg','Prestamo registrado');
     res.redirect('/prestamos');
@@ -35,7 +35,13 @@ router.post('/prestamos/nuevo-prestamo/:id',isAuthenticated,async(req,res)=>{
 router.get('/prestamos',isAuthenticated,async(req,res)=>{
     const [{matricula}] = await Users.find({name:req.user.name}).lean();
     const prestamos = await Prestamos.find({matricula:matricula}).lean();
-    res.render('prestamos/all-prestamos',{prestamos});
+    const [{entrega}] = prestamos;
+    var fecha = new Date();
+    var restante = Math.round(Math.abs(fecha.getTime() - entrega.getTime())/ (1000 * 60 * 60 * 24)); 
+    var diferencia = {
+        restante:restante,
+    };
+    res.render('prestamos/all-prestamos',{prestamos,diferencia});
 });
 
 router.delete('/prestamos/delete/:id',isAuthenticated,async(req,res)=>{
