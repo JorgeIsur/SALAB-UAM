@@ -10,6 +10,10 @@ const Users = require('../models/User');
 
 const {isAuthenticated} = require('../helpers/auth');
 
+const { default: jsPDF } = require('jspdf');
+
+const path = require('path');
+
 router.get('/prestamos/nuevo-prestamo',isAuthenticated,async(req,res)=>{
     const items = await Inventario.find().lean();
     res.render('prestamos/nuevo-prestamo',{items});
@@ -43,7 +47,15 @@ router.get('/prestamos',isAuthenticated,async(req,res)=>{
         var diferencia = {
             restante:restante,
         };
-        res.render('prestamos/all-prestamos',{prestamos,diferencia});
+        console.log(diferencia.restante);
+        if(diferencia.restante==0){
+            var adeudo = {
+                adeudo: new Date()
+            };
+            res.render('prestamos/all-prestamos',{prestamos,diferencia,adeudo});
+        }else{
+            res.render('prestamos/all-prestamos',{prestamos,diferencia});
+        }
     }
     catch(err){
         console.log('entra catch');
@@ -59,6 +71,17 @@ router.delete('/prestamos/delete/:id',isAuthenticated,async(req,res)=>{
     await Prestamos.findByIdAndDelete(req.params.id);
     req.flash('success_msg','Prestamo cancelado satisfactoriamente.');
     res.redirect('/prestamos');
+});
+
+router.get('/prestamos/no-adeudos',isAuthenticated,async(req,res)=>{
+    var documento = new jsPDF();
+    console.log(req.user.matricula);
+    var matricula = req.user.matricula;
+    documento.text(10,10,'NO adeudos');
+    await documento.save('public/pdf/'+matricula+'-no-adeudos.pdf');
+    const ruta = 'public/pdf/'+matricula+"-no-adeudos.pdf";
+    console.log(ruta);
+    res.send('<a href="http://127.0.0.1:8887/'+ruta+'" download> PDF </a>')
 });
 
 module.exports = router;

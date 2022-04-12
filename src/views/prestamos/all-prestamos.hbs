@@ -1,6 +1,22 @@
 <div class="row">
     {{#if user}}
     <h1>Hola, {{user.name}}</h1>
+    <div class="card" style="width: 18rem;">
+        <div class="card-title">
+            <h2>Carta de no adeudos</h2>
+        </div>
+        {{#if adeudo}}
+        <div class="card-text">
+            <p>Presentas adeudos</p>
+            <a href="/prestamos/no-adeudos" class="btn btn-danger disabled">PDF</a>
+        </div>
+        {{else}}
+        <div class="card-text">
+            <p>No tienes adeudos</p>
+            <a href="/prestamos/no-adeudos" class="btn btn-danger">PDF</a>
+        </div>
+        {{/if}}
+    </div>
     {{/if}}
     {{#if user.admin}}
         <h4>Permisos de administrador.</h4>
