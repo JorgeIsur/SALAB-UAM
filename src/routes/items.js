@@ -19,8 +19,6 @@ router.get("/items/add", isAuthenticated, async (req, res) => {
 
 router.post( "/items/nuevo-articulo", subir.single("image"),isAuthenticated,async (req, res, next) => {
     console.log(req.body);
-    console.log(req.file);
-    console.log(req.file.originalname);
     var data = fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+req.file.filename));
     var obj = {
       img: {

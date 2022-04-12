@@ -33,15 +33,22 @@ router.post('/prestamos/nuevo-prestamo/:id',isAuthenticated,async(req,res)=>{
 });
 
 router.get('/prestamos',isAuthenticated,async(req,res)=>{
-    const [{matricula}] = await Users.find({name:req.user.name}).lean();
-    const prestamos = await Prestamos.find({matricula:matricula}).lean();
-    const [{entrega}] = prestamos;
-    var fecha = new Date();
-    var restante = Math.round(Math.abs(fecha.getTime() - entrega.getTime())/ (1000 * 60 * 60 * 24)); 
-    var diferencia = {
-        restante:restante,
-    };
-    res.render('prestamos/all-prestamos',{prestamos,diferencia});
+    try{
+        const [{matricula}] = await Users.find({name:req.user.name}).lean();
+        const prestamos = await Prestamos.find({matricula:matricula}).lean();
+        console.log(prestamos);
+        const [{entrega}] = prestamos;
+        var fecha = new Date();
+        var restante = Math.round(Math.abs(fecha.getTime() - entrega.getTime())/ (1000 * 60 * 60 * 24)); 
+        var diferencia = {
+            restante:restante,
+        };
+        res.render('prestamos/all-prestamos',{prestamos,diferencia});
+    }
+    catch(err){
+        console.log('entra catch');
+        res.render('prestamos/all-prestamos');
+    }
 });
 
 router.delete('/prestamos/delete/:id',isAuthenticated,async(req,res)=>{
