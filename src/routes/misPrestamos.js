@@ -75,6 +75,7 @@ router.get('/prestamos',isAuthenticated,async(req,res)=>{
     }
     catch(err){
         console.log('entra catch');
+        console.log(err);
         res.render('prestamos/all-prestamos');
     }
 });
@@ -88,8 +89,8 @@ router.delete('/prestamos/delete/:id',isAuthenticated,async(req,res)=>{
     req.flash('success_msg','Prestamo cancelado satisfactoriamente.');
     res.redirect('/prestamos');
 });
-
-router.get('/prestamos/no-adeudos',isAuthenticated,async(req,res)=>{
+//DEPRECATED
+/*router.get('/prestamos/no-adeudos',isAuthenticated,async(req,res)=>{
     var documento = new jsPDF();
     console.log(req.user.matricula);
     var matricula = req.user.matricula;
@@ -103,5 +104,6 @@ router.get('/prestamos/no-adeudos',isAuthenticated,async(req,res)=>{
     console.log(ruta);
     res.send('<a href="http://127.0.0.1:8887/'+ruta+'" download> PDF </a>')
 });
+*/
 
 module.exports = router;
