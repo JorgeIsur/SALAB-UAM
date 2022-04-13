@@ -54,7 +54,23 @@ router.get('/prestamos',isAuthenticated,async(req,res)=>{
             };
             res.render('prestamos/all-prestamos',{prestamos,diferencia,adeudo});
         }else{
-            res.render('prestamos/all-prestamos',{prestamos,diferencia});
+            var documento = new jsPDF();
+            console.log(req.user.matricula);
+            //var matricula = req.user.matricula;
+            documento.text(10,10,'Universidad Autónoma Metropolitana');
+            documento.text(10,20,'Carta de NO adeudos.');
+            documento.text(10,30,'Alumno:'+req.user.name+"");
+            documento.text(10,40,'Matricula:'+matricula+"");
+            documento.text(10,50,'Fecha:'+fecha);
+            await documento.save('public/pdf/'+matricula+'-no-adeudos.pdf');
+            const server = 'http://127.0.0.1:8887/'
+            const ruta = 'public/pdf/'+matricula+"-no-adeudos.pdf";
+            var descarga = server + ruta;
+            const url = {
+                descarga:descarga
+            };
+            console.log(url);
+            res.render('prestamos/all-prestamos',{prestamos,diferencia,url});
         }
     }
     catch(err){
@@ -77,7 +93,11 @@ router.get('/prestamos/no-adeudos',isAuthenticated,async(req,res)=>{
     var documento = new jsPDF();
     console.log(req.user.matricula);
     var matricula = req.user.matricula;
-    documento.text(10,10,'NO adeudos');
+    documento.text(10,10,'Universidad Autónoma Metropolitana');
+    documento.text(10,20,'Carta de NO adeudos.');
+    documento.text(10,30,'Alumno:'+req.user.name+"");
+    documento.text(10,40,'Matricula:'+matricula+"");
+    documento.text(10,50,'Fecha:'+Date.now());
     await documento.save('public/pdf/'+matricula+'-no-adeudos.pdf');
     const ruta = 'public/pdf/'+matricula+"-no-adeudos.pdf";
     console.log(ruta);
