@@ -4,7 +4,14 @@
     {{#if user.admin}}
         <h4>Permisos de administrador.</h4>
     {{/if}}
-    <div class="card" style="width: 18rem;">
+    {{#if obj}}
+    <div class="card mb-3" style="width: 18rem;">
+        <div class="card-title">
+            <h2>Bienvenido</h2>
+        </div>
+    </div>
+    {{else}}
+    <div class="card" style="width: 18rem; height: 13rem;">
         <div class="card-title">
             <h2>Carta de no adeudos</h2>
         </div>
@@ -20,6 +27,7 @@
         </div>
         {{/if}}
     </div>
+    {{/if}}
     {{/if}}
     {{#each prestamos}}
         <div class="col-md-3">

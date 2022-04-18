@@ -76,7 +76,10 @@ router.get('/prestamos',isAuthenticated,async(req,res)=>{
     catch(err){
         console.log('entra catch');
         console.log(err);
-        res.render('prestamos/all-prestamos');
+        var obj = {
+            newUser:true,
+        };
+        res.render('prestamos/all-prestamos', {obj});
     }
 });
 
