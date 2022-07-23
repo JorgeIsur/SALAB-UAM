@@ -32,7 +32,10 @@ router.post('/prestamos/nuevo-prestamo/:id',isAuthenticated,async(req,res)=>{
     nuevoPrestamo.actualizar = await nuevoPrestamo.actualizaInventario(name);
     nuevoPrestamo.user = req.user._id;
     await nuevoPrestamo.save();
+    //GENERAR CLAVE DE ACCESO
+    const clave = Math.random().toString().slice(2,7);
     req.flash('success_msg','Prestamo registrado');
+    req.flash('success_msg','Clave de acceso:'+clave);
     res.redirect('/prestamos');
 });
 

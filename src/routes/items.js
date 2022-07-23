@@ -19,14 +19,25 @@ router.get("/items/add", isAuthenticated, async (req, res) => {
 
 router.post( "/items/nuevo-articulo", subir.single("image"),isAuthenticated,async (req, res, next) => {
     console.log(req.body);
-    var data = fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+req.file.filename));
-    var obj = {
+    try{
+      var data = fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+req.file.filename));
+      var obj = {
       img: {
         data:fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+req.file.filename)),
         contentType: "image/jpeg",
         pic:data.toString('base64'),
       },
     };
+    }catch(err){
+      var data = fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+"notfound.png"));
+      var obj = {
+      img: {
+        data:fs.readFileSync(path.join(__dirname+"/../"+"/public/pictures"+"/"+"notfound.png")),
+        contentType: "image/jpeg",
+        pic:data.toString('base64'),
+      },
+      };
+    }
     console.log(obj);
     const {img} = obj;
     const { name, description, cantidad, area, lab, numInventario, stock } =req.body;
@@ -48,20 +59,28 @@ router.post( "/items/nuevo-articulo", subir.single("image"),isAuthenticated,asyn
         cantidad,
       });
     } else {
-      const nuevoInventario = new Inventario({
-        name,
-        description,
-        cantidad,
-        area,
-        lab,
-        numInventario,
-        stock,
-        img,
-      });
-      nuevoInventario.user = req.user._id;
-      await nuevoInventario.save();
-      req.flash("success_msg", "Item registrado.");
-      res.redirect("/items");
+        try{
+          const nuevoInventario = new Inventario({
+          name,
+          description,
+          cantidad,
+          area,
+          lab,
+          numInventario,
+          stock,
+          img,
+        });
+        nuevoInventario.user = req.user._id;
+        await nuevoInventario.save();
+        req.flash("success_msg", "Item registrado.");
+        res.redirect("/items");
+      }
+      catch(err){
+        console.log("Entra catch");
+        req.flash("error_msg","Hubo un error en la solicitud.");
+        console.log(err);
+        res.redirect("/prestamos");
+      }
     }
   }
 );
