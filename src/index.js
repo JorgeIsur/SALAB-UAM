@@ -49,6 +49,7 @@ app.use(require('./routes/misPrestamos'));
 app.use(require('./routes/items'));
 app.use(require('./routes/laboratorios'));
 app.use(require('./routes/administrar'));
+app.use(require('./routes/recoger'));
 //estaticos
 app.use(express.static(path.join(__dirname,'public')));
 //inicializar servidor

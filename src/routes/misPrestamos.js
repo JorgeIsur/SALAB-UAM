@@ -8,6 +8,8 @@ const Labs = require('../models/Laboratorios');
 
 const Users = require('../models/User');
 
+const Claves = require('../models/Claves');
+
 const {isAuthenticated} = require('../helpers/auth');
 
 const { default: jsPDF } = require('jspdf');
@@ -34,6 +36,11 @@ router.post('/prestamos/nuevo-prestamo/:id',isAuthenticated,async(req,res)=>{
     await nuevoPrestamo.save();
     //GENERAR CLAVE DE ACCESO
     const clave = Math.random().toString().slice(2,7);
+    console.log(clave.length);
+    console.log(name);
+    var recogido = false;
+    const newClave = new Claves({matricula,name,clave,recogido});
+    await newClave.save();
     req.flash('success_msg','Prestamo registrado');
     req.flash('success_msg','Clave de acceso:'+clave);
     res.redirect('/prestamos');
