@@ -8,19 +8,16 @@
                 <p><b>Matricula</b></p>
                 <p>{{matricula}}</p>
                 <p><b>Estado</b></p>
-                <form action="/recoger" method="POST">
-                    <div class="form-group mt-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="recoger" name="recoger" value="true" checked>
-                            <label class="form-check-label" for="recoger">Recoger</label>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <button class="btn btn-primary w-100" type="submit">
-                            Confirmar
-                        </button>
-                    </div>
+                {{#if recoger}}
+                <p>Recogido</p>
+                {{else}}
+                <p>No recogido</p>
+                <form action="/recoger/abrir" method="POST">
+                    <button class="mt-4 btn btn-success w-100 btn-sm form-group" type="submit">
+                        Recoger
+                    </button>
                 </form>
+                {{/if}}
             </div>
         </div>
     </div>

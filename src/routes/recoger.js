@@ -10,18 +10,19 @@ router.get('/recoger',isAuthenticated,async(req,res)=>{
     res.render('recoger/all-recoger',{recoger});
 });
 
+router.post('/recoger/abrir',isAuthenticated,async(req,res)=>{
+    console.log(req.body);
+    var {recoger} = req.body;
+    recoger = true;
+    await Claves.findByIdAndUpdate(req.params.id,{recogido:recoger});
+    res.redirect('/recoger');
+});
+
 router.get('/recoger/nuevo-recoger',isAuthenticated,async(req,res)=>{
     res.render('recoger/nuevo-recoger');
 });
 
 router.post('/recoger/nuevo-recoger',isAuthenticated,async(req,res)=>{
-    const options = {
-        // Clean session
-        clean: true,
-        connectTimeout: 4000,
-        // Auth
-        clientId: req.user.name,
-      }
     const {matricula,clave} = req.body;
     const errors = [];
     if(matricula.length<=0){
